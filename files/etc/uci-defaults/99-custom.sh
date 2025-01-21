@@ -31,6 +31,7 @@ else
    . "$SETTINGS_FILE"
 fi
 
+# 检查配置文件lan-settings是否存在 该文件由build.sh动态生成
 LAN_SETTINGS_FILE="/etc/config/lan-settings"
 if [ ! -f "$LAN_SETTINGS_FILE" ]; then
     echo "LAN settings file not found. Skipping." >> $LOGFILE
