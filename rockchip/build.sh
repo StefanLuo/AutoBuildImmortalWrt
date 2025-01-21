@@ -15,6 +15,9 @@ cat << EOF > /home/build/immortalwrt/files/etc/config/lan-settings
 lan_ip=${LAN_IP}
 EOF
 
+echo "cat lan-settings"
+cat /home/build/immortalwrt/files/etc/config/lan-settings
+
 # 创建pppoe配置文件 yml传入环境变量ENABLE_PPPOE等 写入配置文件 供99-custom.sh读取
 cat << EOF > /home/build/immortalwrt/files/etc/config/pppoe-settings
 enable_pppoe=${ENABLE_PPPOE}
