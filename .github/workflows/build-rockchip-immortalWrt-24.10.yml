@@ -100,6 +100,7 @@ jobs:
         run: |
           profiles="${{ github.event.inputs.profile }}"
           rootfs_partsize="${{ github.event.inputs.rootfs_partsize }}"
+          lan_ip="${{ github.event.inputs.lan_ip }}"
           
           IFS=',' read -r -a profile_array <<< "$profiles"
           
