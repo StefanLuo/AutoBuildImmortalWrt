@@ -7,10 +7,10 @@ echo "Building for profile: $PROFILE"
 # yml 传入的固件大小 ROOTFS_PARTSIZE
 echo "Building for ROOTFS_PARTSIZE: $ROOTFS_PARTSIZE"
 
-echo "Create pppoe-settings"
 mkdir -p  /home/build/immortalwrt/files/etc/config
 
 # 创建lan ip配置文件 yml传入环境变量LAN_IP 写入配置文件 供99-custom.sh读取
+echo "Create lan-settings"
 cat << EOF > /home/build/immortalwrt/files/etc/config/lan-settings
 lan_ip=${LAN_IP}
 EOF
@@ -19,6 +19,7 @@ echo "cat lan-settings"
 cat /home/build/immortalwrt/files/etc/config/lan-settings
 
 # 创建pppoe配置文件 yml传入环境变量ENABLE_PPPOE等 写入配置文件 供99-custom.sh读取
+echo "Create pppoe-settings"
 cat << EOF > /home/build/immortalwrt/files/etc/config/pppoe-settings
 enable_pppoe=${ENABLE_PPPOE}
 pppoe_account=${PPPOE_ACCOUNT}
