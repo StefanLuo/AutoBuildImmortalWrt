@@ -6,6 +6,8 @@ echo "Starting 99-custom.sh at $(date)" >> $LOGFILE
 echo "Building for profile: $PROFILE"
 # yml 传入的固件大小 ROOTFS_PARTSIZE
 echo "Building for ROOTFS_PARTSIZE: $ROOTFS_PARTSIZE"
+# yml 传入的LAN IP地址 LAN_IP
+echo "Building for LAN_IP: $LAN_IP"
 
 mkdir -p  /home/build/immortalwrt/files/etc/config
 
