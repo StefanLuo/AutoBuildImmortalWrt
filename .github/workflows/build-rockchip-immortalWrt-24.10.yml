@@ -57,6 +57,10 @@ on:
         description: '设置软件包大小 单位(MB)'
         required: true
         default: '1024'
+      lan_ip:
+        description: '设置LAN IP地址'
+        required: true
+        default: '192.168.100.1'
       enable_pppoe:
         description: "是否配置PPPoE拨号信息?"
         required: true
