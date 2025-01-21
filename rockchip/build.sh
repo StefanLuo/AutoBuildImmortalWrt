@@ -10,6 +10,9 @@ echo "Building for ROOTFS_PARTSIZE: $ROOTFS_PARTSIZE"
 echo "Create pppoe-settings"
 mkdir -p  /home/build/immortalwrt/files/etc/config
 
+# 创建lan ip配置文件 yml传入环境变量LAN_IP 写入配置文件 供99-custom.sh读取
+lan_ip=${LAN_IP}
+
 # 创建pppoe配置文件 yml传入环境变量ENABLE_PPPOE等 写入配置文件 供99-custom.sh读取
 cat << EOF > /home/build/immortalwrt/files/etc/config/pppoe-settings
 enable_pppoe=${ENABLE_PPPOE}
