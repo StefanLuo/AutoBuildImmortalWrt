@@ -31,6 +31,14 @@ else
    . "$SETTINGS_FILE"
 fi
 
+LAN_SETTINGS_FILE="/etc/config/lan-settings"
+if [ ! -f "$LAN_SETTINGS_FILE" ]; then
+    echo "LAN settings file not found. Skipping." >> $LOGFILE
+else
+   # 读取lan信息($lan_ip)
+   . "$LAN_SETTINGS_FILE"
+fi
+
 # 网络设置
 if [ "$count" -eq 1 ]; then
    # 单网口设备 类似于NAS模式 动态获取ip模式 具体ip地址取决于上一级路由器给它分配的ip 也方便后续你使用web页面设置旁路由
@@ -39,7 +47,7 @@ if [ "$count" -eq 1 ]; then
 elif [ "$count" -gt 1 ]; then
    # 多网口设备 支持修改为别的ip地址
    uci set network.lan.ipaddr=$lan_ip
-   echo "set 192.168.100.1 at $(date)" >> $LOGFILE
+   echo "set $(lan_ip) at $(date)" >> $LOGFILE
    # 判断是否启用 PPPoE
    echo "print enable_pppoe value=== $enable_pppoe" >> $LOGFILE
    if [ "$enable_pppoe" = "yes" ]; then
