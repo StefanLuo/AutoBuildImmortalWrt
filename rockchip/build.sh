@@ -49,6 +49,8 @@ PACKAGES="$PACKAGES luci-i18n-homeproxy-zh-cn"
 PACKAGES="$PACKAGES openssh-sftp-server"
 PACKAGES="$PACKAGES luci-i18n-dockerman-zh-cn"
 PACKAGES="luci-i18n-msd_lite-zh-cn"
+PACKAGES="luci-i18n-upnp-zh-cn"
+PACKAGES="luci-i18n-vlmcsd-zh-cn"
 # 增加几个必备组件 方便用户安装iStore
 PACKAGES="$PACKAGES fdisk"
 PACKAGES="$PACKAGES script-utils"
