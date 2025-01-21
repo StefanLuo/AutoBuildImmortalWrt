@@ -48,7 +48,7 @@ if [ "$count" -eq 1 ]; then
 elif [ "$count" -gt 1 ]; then
    # 多网口设备 支持修改为别的ip地址
    uci set network.lan.ipaddr=$lan_ip
-   echo "set $(lan_ip) at $(date)" >> $LOGFILE
+   echo "set $lan_ip at $(date)" >> $LOGFILE
    # 判断是否启用 PPPoE
    echo "print enable_pppoe value=== $enable_pppoe" >> $LOGFILE
    if [ "$enable_pppoe" = "yes" ]; then
