@@ -1,4 +1,4 @@
-name: build-rockchip-immortalWrt-24.10
+name: build-rockchip-OpenWrt-24.10
 
 on:
   workflow_dispatch:
@@ -96,7 +96,7 @@ jobs:
             fi
           fi
 
-      - name: Building Rockchip ImmortalWrt
+      - name: Building Rockchip OpenWrt
         run: |
           profiles="${{ github.event.inputs.profile }}"
           rootfs_partsize="${{ github.event.inputs.rootfs_partsize }}"
@@ -109,17 +109,17 @@ jobs:
             
             docker run --rm -i \
               --user root \
-              -v "${{ github.workspace }}/bin:/home/build/immortalwrt/bin" \
-              -v "${{ github.workspace }}/files:/home/build/immortalwrt/files" \
-              -v "${{ github.workspace }}/rockchip/imm.config:/home/build/immortalwrt/.config" \
-              -v "${{ github.workspace }}/rockchip/build.sh:/home/build/immortalwrt/build.sh" \
+              -v "${{ github.workspace }}/bin:/home/build/openwrt/bin" \
+              -v "${{ github.workspace }}/files:/home/build/openwrt/files" \
+              -v "${{ github.workspace }}/rockchip/imm.config:/home/build/openwrt/.config" \
+              -v "${{ github.workspace }}/rockchip/build.sh:/home/build/openwrt/build.sh" \
               -e PROFILE=$profile \
               -e ROOTFS_PARTSIZE=$rootfs_partsize \
               -e LAN_IP=$lan_ip \
               -e ENABLE_PPPOE=${{ inputs.enable_pppoe }} \
               -e PPPOE_ACCOUNT=${{ inputs.pppoe_account }} \
               -e PPPOE_PASSWORD=${{ inputs.pppoe_password }} \
-              immortalwrt/imagebuilder:rockchip-armv8-openwrt-24.10.0-rc3 /bin/bash /home/build/immortalwrt/build.sh
+              openwrt/imagebuilder:rockchip-armv8-24.10.0-rc6 /bin/bash /home/build/openwrt/build.sh
           done
       - name: Generate Firmware SHA-256
         run: |
@@ -129,11 +129,11 @@ jobs:
             sha256sum -c "$file.sha256"
           done
 
-      - name: Upload ImmortWrt as release assets
+      - name: Upload OpenWrt as release assets
         uses: softprops/action-gh-release@v2.2.1
         with:
           tag_name: Autobuild
-          name: ImmortWrt-Rockchip
+          name: OpenWrt-Rockchip
           body_path: ${{ github.workspace }}/info.md
           files: |
             ${{ github.workspace }}/*.img.gz
